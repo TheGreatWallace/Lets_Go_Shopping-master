@@ -1,0 +1,45 @@
+<div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <a href="#" class="navbar-brand" style="margin-left: 520px; font-family: 'Bungee Shade';font-size: 34px; color: wheat;">Lets Go Shopping!</a>
+
+    <div class="navbar-nav" style="margin-right: 420px;">
+
+      <button class="nav-item m-0 p-0 btn btn-sm btn-success" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a routerLink="items" class="nav-link" style="font-size: 18px;">ITEMS</a>
+      </button>
+
+      <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a routerLink="add-item" class="nav-link" style="font-size: 14px;">Add a New Item</a>
+      </li>
+
+      &#160; &#160; 
+
+      <button class="nav-item m-0 p-0 btn btn-sm btn-success" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a routerLink="categories" class="nav-link" style="font-size: 18px;">CATEGORIES</a>
+      </button>
+
+      <!-- <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a routerLink="categories" class="nav-link" style="font-size: 20px;">CATEGORIES</a>
+      </li> -->
+
+      <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a routerLink="add-categorie" class="nav-link" style="font-size: 14px;">Add a New Categorie</a>
+      </li>
+
+    </div>
+  </nav>
+  <br><br>
+
+  <div class="container mt-3">
+    <router-outlet></router-outlet>
+  </div>
+
+  <footer class="text-center text-lg-start" style="position: fixed; bottom: 0%; width: 100%;">
+    <!-- Copyright -->
+    <div class="text-center p-3">
+      © 2022 Copyright:
+      <a style="color: red;" class="text-dark" href="">LetsGoShopping!</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+</div>

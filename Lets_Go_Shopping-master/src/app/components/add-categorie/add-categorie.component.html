@@ -1,0 +1,47 @@
+<br><br>
+
+<h3 style="margin-left: 420px;">Add a New Categorie</h3>
+<br>
+
+<div>
+    <div class="submit-form">
+      <div *ngIf="!submitted" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; padding: 20px; background-color: aliceblue; opacity: 0.7;">
+
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nm"
+            required
+            [(ngModel)]="categorie.name"
+            name="name"
+          />
+        </div>
+
+        
+        <div class="form-group">
+          <label for="name">Description</label> <br>
+            <textarea 
+                name="description" 
+                id="descrpt" 
+                required
+                [(ngModel)]="categorie.description"
+                cols="40" 
+                rows="5">
+            </textarea>
+        </div>
+
+        <button (click)="saveCategorie()" class="btn btn-success">Submit</button>
+      </div>
+
+      <div *ngIf="submitted">
+        <h4>The categorie was submitted successfully!</h4>
+        <button class="btn btn-success" (click)="newCategorie()">Add Another Categorie</button>
+      </div>
+    </div>
+</div>
+
+
+
+

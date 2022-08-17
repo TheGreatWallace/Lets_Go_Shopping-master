@@ -1,0 +1,15 @@
+.submit-form {
+    /* max-width: 800px; */
+    width: 400px;
+    margin: auto;
+    margin-left: 360px;
+}
+
+label{
+    font-weight: bold;
+}
+
+select{
+    padding: 3px;
+    font-size: 14px;
+}

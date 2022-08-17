@@ -1,0 +1,10 @@
+.edit-form {
+    max-width: 800px;
+    width: 400px;
+    margin: auto;
+    margin-right: 480px;
+}
+
+label{
+    font-weight: bold;
+}

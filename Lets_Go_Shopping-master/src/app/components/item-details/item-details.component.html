@@ -1,0 +1,146 @@
+<div *ngIf="viewMode; else editable" style="width: 350px; margin-left: 120px; margin-top: 80px;">
+    <div *ngIf="currentItem.id" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; padding: 25px; background-color: aliceblue; opacity: 0.6;">
+      <h4 style="color: orange;">Item Details</h4>
+      <br>
+
+      <div>
+        <label><strong>Name:</strong></label> {{ currentItem.name }}
+      </div>
+      <div>
+        <label><strong>Categorie:</strong></label> {{ currentItem.categorie }}
+      </div>
+      <div>
+        <label><strong>Amount:</strong></label> {{ currentItem.amount }}
+      </div>
+      <div>
+        <label><strong>Price:</strong></label> {{ currentItem.price }}
+      </div>
+      <label><strong>Status:</strong></label> {{ currentItem.bought? "Bought" : "Pending" }}
+      <br> <br>
+      
+      <a
+        class="badge badge-warning"
+        routerLink="/items/{{ currentItem.id }}" style="font-size: 16px;">
+        Edit Item
+      </a>
+    </div>
+</div>
+    
+<div *ngIf="!currentItem">
+    <br />
+    <p>Please click on an Item...</p>
+</div>
+
+<div *ngIf="currentItem.id" style="margin-left: 600px;">
+  <h4 *ngIf="!viewMode" style="margin-top: -260px; font-size: 32px;">You are Editing 
+    <br>
+    <span style="color: pink; font-style: italic; font-size: 42px;">{{currentItem.name}}</span>
+  </h4>
+</div>
+
+<ng-template #editable>
+    <br>
+    <h5 style="text-align: center; font-size: 22px; color: red; font-weight: 200;">Kindly ensure that the data is correct to the best of your knowledge.</h5>
+    <br>
+
+    <div *ngIf="currentItem.id" class="edit-form" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; padding: 20px; background-color: aliceblue; opacity: 0.7; margin-left: 120px; margin-top: 60px;">
+      <form>
+        <div class="form-group">
+            <label for="name">Current Name :</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nm"
+              required
+              [(ngModel)]="currentItem.name"
+              name="name"
+            />
+          </div>
+  
+          <div class="form-group">
+            <label for="name">Current Categorie :</label>
+              <span [(ngModel)]="currentItem.categorie">
+                {{currentItem.categorie}}
+              </span>
+              <br>
+              <span style="font-size: 12px; font-style: italic; font-weight: bold; color: blue">You can also choose a different Category :</span>
+              <br>
+              <select 
+              name="categorie" 
+              id="cG"
+              required
+              [(ngModel)]="currentItem.categorie"
+              >
+                <!-- <option [(ngModel)]="currentItem.categorie">{{currentItem.categorie}}</option> -->
+                <option *ngFor="let categorie of categories" style="font-size: 16px; font-style: italic;">
+                  {{categorie.name}}
+                </option>
+              </select>
+          </div>
+  
+          <div class="form-group">
+            <label for="amount">Current Amount :</label>
+            <input
+              type="number"
+              class="form-control"
+              id="aM"
+              required
+              [(ngModel)]="currentItem.amount"
+              name="amount"
+            />
+          </div>
+  
+          <div class="form-group">
+            <label for="price">Current Price :</label>
+            <input
+              class="form-control"
+              id="pR"
+              required
+              [(ngModel)]="currentItem.price"
+              name="price"
+            />
+          </div>
+
+        <div class="form-group">
+          <label><strong>Status :</strong></label>
+          {{ currentItem.bought ? "Bought" : "Pending" }}
+        </div>
+      </form>
+
+      <button
+        class="badge badge-primary mr-2"
+        *ngIf="currentItem.bought"
+        (click)="updateBought(false)"
+        style="font-size: 14px;"
+      >
+        Not Purchased
+      </button>
+      <button
+        *ngIf="!currentItem.bought"
+        class="badge badge-primary mr-2"
+        (click)="updateBought(true)"
+        style="font-size: 14px;"
+      >
+        Purchased
+      </button>
+
+      <button class="badge badge-danger mr-2" (click)="deleteItem()" style="font-size: 14px;">
+        Delete
+      </button>
+      
+      <button
+        type="submit"
+        class="badge badge-success mb-2"
+        (click)="updateItem()"
+        style="font-size: 14px;"
+      >
+        Update Item
+      </button>
+      <p>{{ message }}</p>
+    </div>
+    <div *ngIf="!currentItem.id">
+      <br />
+      <p>Cannot access this Item...</p>
+    </div>
+</ng-template>
+

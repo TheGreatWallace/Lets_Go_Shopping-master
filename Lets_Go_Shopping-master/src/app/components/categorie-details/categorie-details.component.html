@@ -1,0 +1,90 @@
+<div *ngIf="viewMode; else editable" style="width: 350px; margin-left: 120px; margin-top: 150px;">
+    <div *ngIf="currentCategorie.id" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; padding: 25px; background-color: aliceblue; opacity: 0.6;">
+      <h4 style="color: orange;">Categorie Details</h4>
+      <br>
+
+      <div>
+        <label><strong>Name:</strong></label> {{ currentCategorie.name }}
+      </div>
+      <div>
+        <label><strong>Description:</strong></label> <br>
+            {{ currentCategorie.description }}
+      </div>
+      <br>
+      
+      <a
+        class="badge badge-warning"
+        routerLink="/categories/{{ currentCategorie.id }}" style="font-size: 16px;">
+        Edit Item
+      </a>
+    </div>
+</div>
+    
+<div *ngIf="!currentCategorie">
+    <br />
+    <p>Please click on an Item...</p>
+</div>
+
+<div *ngIf="currentCategorie.id" style="margin-left: 600px;">
+  <h4 *ngIf="!viewMode" style="margin-top: -240px; font-size: 32px;">You are Editing 
+    <br>
+    <span style="color: greenyellow; font-style: italic; font-size: 40px;">{{currentCategorie.name}}</span>
+  </h4>
+</div>
+
+<ng-template #editable>
+    <br>
+    <h5 style="text-align: center; font-size: 22px; color: red; font-weight: 200;">Kindly ensure that the data is correct to the best of your knowledge.</h5>
+    <br>
+
+    <div *ngIf="currentCategorie.id" class="edit-form" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; padding: 20px; background-color: aliceblue; opacity: 0.7; margin-left: 120px; margin-top: 60px;">
+      <form>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nm"
+              required
+              [(ngModel)]="currentCategorie.name"
+              name="name"
+            />
+          </div>
+  
+          <div class="form-group">
+            <label for="name">Description</label> <br>
+              <textarea 
+                  name="description" 
+                  id="descrpt" 
+                  required
+                  [(ngModel)]="currentCategorie.description"
+                  cols="40" 
+                  rows="5">
+              </textarea>
+          </div>
+      </form>
+
+      <button class="badge badge-danger mr-2" (click)="deleteCategorie()" style="font-size: 14px;">
+        Delete Current Categorie
+      </button>
+      <br><br>
+      
+      <button
+        type="submit"
+        class="badge badge-success mb-2"
+        (click)="updateCategorie()"
+        style="font-size: 14px;"
+      >
+        Update Current Categorie
+      </button>
+
+      <p>{{ message }}</p>
+    </div>
+
+    <div *ngIf="!currentCategorie.id">
+      <br />
+      <p>Cannot access this Item...</p>
+    </div>
+</ng-template>
+
+
